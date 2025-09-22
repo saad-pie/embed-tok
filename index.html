@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmbedTok: Your TikTok Video Showcase</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FE2C55' d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 17.5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zm-2.5 0a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zm7 0a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zM12 5.5a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1.5zM15 5.5a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1.5z'/%3E%3Cpath fill='%2325F4EE' d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 17.5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zm-2.5 0a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zm7 0a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1.5zM12 5.5a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1.5zM15 5.5a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1.5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1.5z' opacity='.7'/%3E%3C/svg%3E" type="image/svg+xml">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">EmbedTok</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>EmbedTok: Your TikTok Video Showcase</h1>
+            <p>Seamlessly display TikTok videos with a TikTok-themed experience.</p>
+        </section>
+
+        <section class="video-input-section">
+            <h2>Add Your TikTok Video</h2>
+            <p class="instruction">Paste the full TikTok <strong>embed code (the &lt;blockquote&gt; part)</strong> below. Get it from TikTok's share options.</p>
+            <div class="input-group">
+                <textarea id="tiktokEmbedCode" placeholder="E.g., &lt;blockquote class='tiktok-embed' cite='...' data-video-id='...' style='...'&gt;...&lt;/blockquote&gt;"></textarea>
+                <button id="addVideoButton">Add Video</button>
+            </div>
+            <p class="error-message" id="errorMessage"></p>
+        </section>
+
+        <section class="video-gallery">
+            <h2>Your Embedded TikToks</h2>
+            <div id="videoContainer" class="video-grid">
+                <!-- TikTok videos will be embedded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 EmbedTok. All rights reserved.</p>
+    </footer>
+
+    <!-- TikTok embed script - loaded once -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
