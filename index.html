@@ -16,24 +16,24 @@
 
     <main>
         <section class="hero">
-            <h1>EmbedTok: Your TikTok Video Showcase</h1>
-            <p>Seamlessly display TikTok videos with a TikTok-themed experience.</p>
+            <h1>EmbedTok: Open TikTok Videos</h1>
+            <p>Showcase TikTok videos and open them directly in the app.</p>
         </section>
 
         <section class="video-input-section">
-            <h2>Add Your TikTok Video</h2>
-            <p class="instruction">Paste the full TikTok <strong>embed code (the &lt;blockquote&gt; part)</strong> below. Get it from TikTok's share options.</p>
+            <h2>Suggest a TikTok Video</h2>
+            <p class="instruction">Paste the full TikTok video URL below. We'll show a preview and link to the app.</p>
             <div class="input-group">
-                <textarea id="tiktokEmbedCode" placeholder="E.g., &lt;blockquote class='tiktok-embed' cite='...' data-video-id='...' style='...'&gt;...&lt;/blockquote&gt;"></textarea>
-                <button id="addVideoButton">Add Video</button>
+                <input type="url" id="tiktokVideoUrl" placeholder="E.g., https://www.tiktok.com/@user/video/1234567890123456789">
+                <button id="addVideoButton">Suggest Video</button>
             </div>
             <p class="error-message" id="errorMessage"></p>
         </section>
 
         <section class="video-gallery">
-            <h2>Your Embedded TikToks</h2>
+            <h2>Your TikToks</h2>
             <div id="videoContainer" class="video-grid">
-                <!-- TikTok videos will be embedded here -->
+                <!-- TikTok videos will be displayed here -->
             </div>
         </section>
     </main>
@@ -42,8 +42,6 @@
         <p>&copy; 2023 EmbedTok. All rights reserved.</p>
     </footer>
 
-    <!-- TikTok embed script - loaded once -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
