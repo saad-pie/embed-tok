@@ -1,0 +1,307 @@
+/* General Resets and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --tiktok-red: #FE2C55;
+    --tiktok-blue: #25F4EE;
+    --tiktok-dark: #121212;
+    --tiktok-light: #FFFFFF;
+    --tiktok-grey: #333333;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--tiktok-dark);
+    color: var(--tiktok-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--tiktok-red);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: var(--tiktok-dark);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--tiktok-light);
+    position: relative;
+    display: inline-block;
+}
+
+.logo::before,
+.logo::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.logo::before {
+    background-color: var(--tiktok-red);
+    top: -5px;
+    left: -5px;
+}
+
+.logo::after {
+    background-color: var(--tiktok-blue);
+    bottom: -5px;
+    right: -5px;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    width: 100%;
+}
+
+section {
+    margin-bottom: 3rem;
+    background-color: var(--tiktok-grey);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2 {
+    color: var(--tiktok-light);
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    width: 100%; /* For centering the pseudo-elements */
+}
+
+h1::before, h1::after,
+h2::before, h2::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    filter: blur(7px);
+    z-index: -1;
+}
+
+h1::before, h2::before {
+    background-color: var(--tiktok-red);
+    left: 20%;
+    top: 0;
+}
+
+h1::after, h2::after {
+    background-color: var(--tiktok-blue);
+    right: 20%;
+    bottom: 0;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(45deg, var(--tiktok-dark) 0%, var(--tiktok-grey) 100%);
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    color: #ccc;
+}
+
+/* Video Input Section */
+.video-input-section {
+    text-align: center;
+}
+
+.instruction {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* Stack on small screens */
+    align-items: center;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--tiktok-grey);
+    border-radius: 5px;
+    background-color: #222;
+    color: var(--tiktok-light);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.input-group textarea::placeholder {
+    color: #888;
+}
+
+.input-group button {
+    padding: 0.8rem 2rem;
+    background-color: var(--tiktok-red);
+    color: var(--tiktok-light);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Limit button width */
+}
+
+.input-group button:hover {
+    background-color: #e0254c; /* Darker red */
+    transform: translateY(-2px);
+}
+
+.input-group button:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: var(--tiktok-blue); /* Using blue for error, as it contrasts well */
+    font-weight: bold;
+    margin-top: 1rem;
+    min-height: 1.5rem; /* Reserve space */
+}
+
+/* Video Gallery */
+.video-gallery {
+    text-align: center;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    align-items: start;
+    margin-top: 2rem;
+}
+
+.tiktok-embed-wrapper {
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* Padding around the actual embed */
+    position: relative; /* For potential overlay or effects */
+}
+
+/* Specific styling for TikTok embeds */
+.tiktok-embed {
+    width: 100% !important; /* Override inline styles if necessary */
+    max-width: 605px !important;
+    min-width: 325px !important;
+    margin: 0 auto !important; /* Center the embed */
+}
+
+/* Footer */
+footer {
+    background-color: var(--tiktok-dark);
+    color: #888;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto; /* Pushes footer to the bottom */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .input-group {
+        flex-direction: row;
+    }
+
+    .input-group textarea {
+        width: calc(100% - 150px); /* Adjust width for button */
+        margin-right: 1rem;
+    }
+
+    .input-group button {
+        width: auto;
+        max-width: none;
+    }
+
+    h1::before, h1::after,
+    h2::before, h2::after {
+        width: 30px;
+        height: 30px;
+        filter: blur(10px);
+    }
+    h1::before, h2::before { left: 30%; }
+    h1::after, h2::after { right: 30%; }
+}
+
+@media (min-width: 1024px) {
+    .hero h1 {
+        font-size: 4rem;
+    }
+    h1::before, h2::before { left: 35%; }
+    h1::after, h2::after { right: 35%; }
+}
