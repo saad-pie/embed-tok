@@ -1,36 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tiktokEmbedCodeInput = document.getElementById('tiktokEmbedCode');
+    const tiktokVideoUrlInput = document.getElementById('tiktokVideoUrl');
     const addVideoButton = document.getElementById('addVideoButton');
     const videoContainer = document.getElementById('videoContainer');
     const errorMessage = document.getElementById('errorMessage');
 
+    let existingVideos = []; // To hold videos loaded from database.json and new ones
+
+    // Function to render videos to the DOM
+    const renderVideos = (videos) => {
+        videoContainer.innerHTML = ''; // Clear existing videos
+        videos.forEach((video, index) => {
+            const videoCard = document.createElement('div');
+            videoCard.classList.add('video-card');
+
+            const videoLink = `https://www.tiktok.com/@${video.username}/video/${video.id}`;
+            // Using a generic web link for TikTok; browsers will often prompt to open the app.
+            // Direct app link: `tiktok://vm/${video.id}` could also be used, but requires user action.
+
+            videoCard.innerHTML = `
+                <img src="${video.thumbnail}?random=${index + 1}" alt="${video.title}">
+                <h3>${video.title}</h3>
+                <p>@${video.username}</p>
+                <a href="${videoLink}" target="_blank" class="open-in-tiktok-button">Open in TikTok</a>
+            `;
+            videoContainer.prepend(videoCard); // Add new videos to the top
+        });
+    };
+
+    // Fetch videos from database.json
+    fetch('./database.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            existingVideos = data;
+            renderVideos(existingVideos);
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+            errorMessage.textContent = 'Failed to load videos. Please try again later.';
+        });
+
     addVideoButton.addEventListener('click', () => {
-        const embedCode = tiktokEmbedCodeInput.value.trim();
+        const videoUrl = tiktokVideoUrlInput.value.trim();
         errorMessage.textContent = ''; // Clear previous errors
 
-        if (!embedCode) {
-            errorMessage.textContent = 'Please paste a TikTok embed code.';
+        if (!videoUrl) {
+            errorMessage.textContent = 'Please paste a TikTok video URL.';
             return;
         }
 
-        // Basic validation: check if it looks like a TikTok blockquote embed
-        if (!embedCode.includes('<blockquote class="tiktok-embed"') || !embedCode.includes('data-video-id=')) {
-            errorMessage.textContent = 'Invalid TikTok embed code. Please ensure it is the full <blockquote> element.';
+        // Basic validation for TikTok URL and extract video ID
+        const tiktokRegex = /tiktok\.com\/@[^\/]+\/video\/(\d+)/;
+        const match = videoUrl.match(tiktokRegex);
+
+        if (!match || !match[1]) {
+            errorMessage.textContent = 'Invalid TikTok URL. Please use a direct video link (e.g., https://www.tiktok.com/@user/video/123...).';
             return;
         }
 
-        // Create a wrapper div for styling and to contain the embed
-        const embedWrapper = document.createElement('div');
-        embedWrapper.classList.add('tiktok-embed-wrapper');
-        embedWrapper.innerHTML = embedCode;
+        const videoId = match[1];
+        // Dummy username, title, and thumbnail for dynamically added videos
+        const newVideo = {
+            id: videoId,
+            username: 'tiktok_user',
+            title: 'Suggested TikTok Video',
+            thumbnail: `https://picsum.photos/400/300?random=${Date.now()}` // Unique random image
+        };
 
-        videoContainer.prepend(embedWrapper); // Add new videos to the top
+        // Add to the beginning of the local array and re-render
+        existingVideos.unshift(newVideo);
+        renderVideos(existingVideos);
 
-        tiktokEmbedCodeInput.value = ''; // Clear the input field
+        tiktokVideoUrlInput.value = ''; // Clear the input field
 
-        // The tiktok.com/embed.js script, loaded once in index.html, should automatically
-        // detect and render new blockquote.tiktok-embed elements added to the DOM.
-        // If it doesn't, you might need to manually trigger a re-scan. For this simple setup,
-        // relying on TikTok's script to handle new DOM elements is the expected behavior.
+        // IMPORTANT: For persistence, this 'newVideo' would need to be saved to database.json
+        // via a server-side script. As an autonomous agent, I can only provide the updated
+        // database.json when I generate a new set of files, not update it client-side.
     });
 });
