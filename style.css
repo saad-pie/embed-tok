@@ -180,7 +180,7 @@ p {
     margin: 0 auto 1.5rem auto;
 }
 
-.input-group textarea {
+.input-group input[type="url"] {
     width: 100%;
     padding: 1rem;
     border: 1px solid var(--tiktok-grey);
@@ -188,12 +188,10 @@ p {
     background-color: #222;
     color: var(--tiktok-light);
     font-size: 1rem;
-    resize: vertical;
-    min-height: 100px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.input-group textarea::placeholder {
+.input-group input[type="url"]::placeholder {
     color: #888;
 }
 
@@ -242,24 +240,57 @@ p {
     margin-top: 2rem;
 }
 
-.tiktok-embed-wrapper {
+.video-card {
     background-color: #000;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 1rem; /* Padding around the actual embed */
-    position: relative; /* For potential overlay or effects */
+    padding-bottom: 1rem; /* Padding for the button */
 }
 
-/* Specific styling for TikTok embeds */
-.tiktok-embed {
-    width: 100% !important; /* Override inline styles if necessary */
-    max-width: 605px !important;
-    min-width: 325px !important;
-    margin: 0 auto !important; /* Center the embed */
+.video-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistent card size */
+    object-fit: cover;
+    border-bottom: 2px solid var(--tiktok-red);
+    margin-bottom: 1rem;
+}
+
+.video-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.video-card p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.open-in-tiktok-button {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--tiktok-blue);
+    color: var(--tiktok-dark);
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.open-in-tiktok-button:hover {
+    background-color: #20e0da;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.open-in-tiktok-button:active {
+    transform: translateY(0);
 }
 
 /* Footer */
@@ -278,7 +309,7 @@ footer {
         flex-direction: row;
     }
 
-    .input-group textarea {
+    .input-group input[type="url"] {
         width: calc(100% - 150px); /* Adjust width for button */
         margin-right: 1rem;
     }
